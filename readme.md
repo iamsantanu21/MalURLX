@@ -126,11 +126,18 @@ curl -X POST http://127.0.0.1:8010/predict \
 
 The `chrome-extension/` folder contains a working Chrome extension that communicates with your backend API.
 
+### 📥 Download Extension
+
+Download the extension zip file from our website:  
+🔗 **[https://malurlx.netlify.app/](https://malurlx.netlify.app/)**
+
 ### Install Steps:
-1. Open `chrome://extensions/`  
-2. Enable **Developer Mode**  
-3. Click **Load unpacked**  
-4. Select the `chrome-extension/` folder  
+1. Download the extension zip file from the link above
+2. Extract the zip file to a folder on your computer
+3. Open `chrome://extensions/` in Chrome  
+4. Enable **Developer Mode** (toggle in top-right corner)  
+5. Click **Load unpacked**  
+6. Select the extracted extension folder  
 
 ---
 
