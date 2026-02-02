@@ -3,7 +3,7 @@ venv\Scripts\activate.bat
 
 pip install -r requirements.txt
 
-uvicorn server-updated:app --host 127.0.0.1 --port 8010 --reload
+uvicorn server_updated:app --host 127.0.0.1 --port 8010 --reload
 
 Ctrl + C
 
