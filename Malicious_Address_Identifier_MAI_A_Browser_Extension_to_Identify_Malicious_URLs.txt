@@ -1,0 +1,452 @@
+2023 11th International Conference on Emerging Trends in Engineering Technology - Signal and Information Processing (ICETET - SIP)
+Malicious Address Identifier (MAI): A Browser
+Extension to Identify Malicious URLs
+Om Jaiswal
+Center of Excellence Information Security
+G H Raisoni College of Engineering
+Nagpur, India
+jaiswal om.it@ghrce.raisoni.net
+Parag Asare
+Department of Information Technology
+G H Raisoni College of Engineering
+Nagpur, India
+asare parag.it@ghrce.raisoni.net
+Jitesh Gadgilwar
+Department of Information Technology
+G H Raisoni College of Engineering
+Nagpur, India
+gadgilwar jitesh.it@ghrce.raisoni.net
+Kunal Rahangdale
+Department of Information Technology
+G H Raisoni College of Engineering
+Nagpur, India
+rahangdale kunal.it@ghrce.raisoni.net
+Pratik Adekar
+Department of Information Technology
+G H Raisoni College of Engineering
+Nagpur, India
+adekar pratik.it@ghrce.raisoni.net
+Leela Bitla
+Department of Information Technology
+G H Raisoni College of Engineering
+Nagpur, India
+leela.bitla@raisoni.net
+Sampada Wazalwar
+Center of Excellence Information Security
+G H Raisoni College of Engineering
+Nagpur, India
+sampada.wazalwar@raisoni.net
+Abstract—Many websites have emerged since the internet was
+introduced. Every day, people visit a variety of websites, and
+they unknowingly click on malicious URLs because they simply
+neglect to check the URLs they visit. Clicking on a malicious URL
+has significant consequences. People might become victims of a
+phishing attack, which aims to steal people’s money or identities
+by tricking them into disclosing their personal data such as
+passwords, credit card numbers, and bank account numbers on
+websites that portray themselves as legitimate. They might also
+have malware automatically installed on their computer devices,
+which can harm and destroy their systems. Therefore, if people
+don’t know whether a URL is malicious or not, something more
+dangerous might happen. In this paper, we present a browser
+extension that employs a two-layer model to identify malicious
+URLs on the web using Bi-LSTM and CNN algorithms. This
+extension not only identifies malicious URLs but also prevents
+them from being visited. Furthermore, it blocks ads so that users
+do not click on malicious URLs through ads.
+Index Terms —Browser Extension, Bi-LSTM, CNN, Deep
+Learning, Malicious URL Detection, Web Attacks, Web Browser,
+Web Security
+I. I NTRODUCTION
+Web browsers are now widely used by a significant number
+of people to visit numerous websites on the Internet. In a
+single day, the Google Search Engine scans around 20 billion
+URLs, and according to a study, one-third of the URLs in use
+today are malicious [1]. The purpose behind generating these
+malicious URLs is often terrible, such as advancing a political
+agenda, stealing confidential information from businesses, or
+making quick money. Hackers frequently use popular search
+terms and viral videos to disseminate malicious software or
+links to phishing websites that operate maliciously on users’
+systems or trick them into revealing their personal data online
+[2].
+Trojan horses, ransomware, worms, and spyware are
+examples of malicious software that targets people’s
+computers. These viruses ultimately aim to damage the
+user’s device, access personal information, and make money.
+Moreover, they could damage the network of the business,
+which would cost money. Although the objectives and
+methods used vary, the common purpose is to lure unknowing
+people to these malicious sites, which can be reached by
+links in emails, search engine results, or website redirection
+[3].
+To identify malicious URLs, passive detection tech-
+niques often use lexical and host-based characteristics.
+Lexical characteristics are those that differ in appear-
+ance from actual URLs. For instance, the malicious URL
+www.paypal.com.pay.net has more ”.” than the legitimate URL
+www.paypal.com [4]. MAI uses a two-layer model to identify
+malicious URLs on the internet using Bi-LSTM and CNN
+algorithms that, in addition to identifying malicious URLs,
+prohibit their access and filter ads to prevent users from
+clicking on them via ads.
+II. P ROBLEM STATEMENT
+Reason Behind the Project: With more websites being
+created daily, malicious websites are also becoming more
+prevalent in today’s world. Unknowingly, people visit these
+979-8-3503-4842-2/23/$31.00 ©2023 IEEE
+2023 11th International Conference on Emerging Trends in Engineering & Technology - Signal and Information Processing (ICETET - SIP) | 979-8-3503-4842-2/23/$31.00 ©2023 IEEE | DOI: 10.1109/ICETET-SIP58143.2023.10151582
+Authorized licensed use limited to: South Asian University. Downloaded on March 24,2026 at 17:00:45 UTC from IEEE Xplore.  Restrictions apply. 
+2023 11th International Conference on Emerging Trends in Engineering Technology - Signal and Information Processing (ICETET - SIP)
+websites, making it simple for hackers to target them.
+These unknown clicks can occur for various reasons, in-
+cluding:
+A. Reason-1 (due to the similar-looking URL)
+The structure of the malicious URL differs only slightly
+from that of the real one. People are therefore unable to tell
+the difference between the authentic URL and its imitation.
+In fact, the user interfaces of the two websites are remarkably
+similar, and the imitation also attempts to entice visitors with
+appealing discounts or offers.
+B. Reason-2 (due to advertisement)
+Many advertisements appear while people are browsing the
+internet. Some advertisements may contain links to malicious
+websites or include malicious software. They pop up and draw
+attention by displaying content that is relevant to the viewer’s
+interests and pretends to be legitimate.
+C. Reason-3 (due to redirection)
+When people browse the internet, they click on multiple
+URLs, but occasionally they might be redirected to another
+location or a website that they don’t want to visit, or they might
+click on the URL accidentally. Along with clicking URLs,
+people also frequently click on images, videos, and other types
+of media that may be hyperlinked with malicious URLs and
+endanger themselves.
+III. R ELATED WORK
+The following approaches were identified in the literature
+after evaluating a number of research papers:
+A. Comparative Study:
+In order to compare the effectiveness of multiple well-
+known machine learning classifiers, the URLs were catego-
+rized as benign or dangerous as part of a binary classification
+problem. A public dataset of 450,000 URLs from Kaggle was
+used to train the model, out of which 23.2% (104,438) were
+malicious URLs and the rest were benign URLs. Machine
+learning classification algorithms such as Logistic Regression,
+Stochastic Gradient Descent, Random Forest, Support Vector
+Machine (SVM), Naive Bayes, K-Nearest Neighbor (KNN),
+and Decision Tree were used, and on the OpenPhish website,
+the most accurate classifier was used to find malicious URLs.
+Therefore, it turns out that the Random Forest achieves the
+maximum accuracy and FI score [5].
+B. Multi-Layer Model:
+Using a multi-layer model, the URLs were categorized as
+malicious or normal. The model primarily comprises four-
+layer classifiers, which are referred to as filters in this model.
+Therefore, the model comprises a four-layer filter composition.
+The filter can quickly determine whether a URL is malicious
+or not by training each layer’s threshold as it approaches
+the threshold. If not, the filter hands the URL over to the
+next layer. Machine learning classifiers such as Naive Bayes,
+Decision Tree, and SVM were used to train the model, using
+a dataset of 20,000 samples, a dataset of 10,000 malicious
+URLs from the malicious website lab, and a dataset of 10,000
+normal URLs from the first category directory [6].
+C. Attention Based BiLSTM Model:
+An AB-BiLSTM model based on deep learning was used to
+identify malicious URLs. The model automatically picks up
+new features, and while analyzing URL sequences, it employs
+an attention mechanism to capture anomalous segments. First,
+the URLs were preprocessed and turned into word vectors
+using pre-trained Word2Vec. Next, BiLSTM was trained in
+conjunction with an attention mechanism to extract features
+from URL sequences and classify them. The labeled URL
+dataset of 453,340 URLs, of which 344,821 are benign URLs
+from DMOZ and 108,519 are malicious URLs from VirusTotal
+and PhishTank, was used to test the model The experimental
+findings demonstrate that the suggested model is capable of
+achieving an accuracy rate of 98.06% and an F1 score of
+95.22% [7].
+D. K-Means Clustering:
+Malicious URLs were grouped using K-Means clustering
+utilizing a dataset obtained from an open source threat intel-
+ligence feed framework comprising more than 11,000 mali-
+cious URLs. The dataset of malicious URLs contains hidden
+structures that were found using the unsupervised learning
+technique. Clustering of URL keywords reveals important
+information regarding malicious URLs. The clusters generated
+using the method have a silhouette coefficient of 0.383. Finally,
+in order to determine the percentage of malicious keywords
+included in a specified URL, a probabilistic scoring model was
+created. The model correctly recognised that more than 80%
+of the URLs in a test sample were malicious after analyzing
+more than 72,000 malicious keywords [8].
+E. Convolutional Neural Network (CNN) Model:
+Phishing URLs were identified based on the URL content.
+Online training and online testing make up the two compo-
+nents of the neural network-based approach to identifying ma-
+licious URLs. In order to access the page content, the simple
+features were first utilized for preliminary screening before
+being applied to the URLs that couldn’t be distinguished by
+them. The approach based on CNN is then used to identify
+malicious URLs based on the content of the page. Another
+key element in identifying malicious websites is the webpage
+image. Therefore, a novel CNN-based method was also created
+to detect malicious URLs through the analysis of website
+images [9].
+IV. M ETHODOLOGY
+The current tab URL is collected by the MAI, which then
+sends the URL to the model to determine whether it is
+malicious or not. When MAI is on, it continuously checks
+the URL of the active tab and forbids people from accessing
+it if it is found malicious. MAI can be enabled and disabled as
+Authorized licensed use limited to: South Asian University. Downloaded on March 24,2026 at 17:00:45 UTC from IEEE Xplore.  Restrictions apply. 
+2023 11th International Conference on Emerging Trends in Engineering Technology - Signal and Information Processing (ICETET - SIP)
+needed. Additionally, MAI stops advertisements from showing
+up on the webpage, shielding users from clicking on malicious
+URLs and falling for clickbait. Fig. 1 depicts the overall
+procedure.
+Fig. 1. MAI Overall Approach
+The MAI model has two layers, with the first layer
+recognising the malicious URL using the conventional
+blacklisting method. If the URL is not present in the array
+of URLs that have been blacklisted, the model moves on
+to the next layer after searching the array. To identify the
+malicious URLs, the second layer employs Bi-LSTM and
+CNN algorithms. Finally, if the URL is malicious, it prevents
+anyone from viewing it.
+The MAI model’s two layers are described in detail below:
+A. Layer-1: URL Filtering
+The conventional blacklisting technique is used in the first
+layer of the MAI model to find malicious URLs online. It looks
+for the URL in the list of URLs that have been blacklisted, and
+if it finds the URL there, it prevents people from accessing it.
+Otherwise, it passes the URL on to the next layer for additional
+scrutiny, as shown in Fig. 2.
+B. Layer-2: Bi-LSTM + CNN
+The skip-gram pre-training model provides the initial em-
+bedding representation of the URLs for the second layer of
+the MAI model. Then, context dependency is extracted using
+Bi-LSTM to further understand the deep representation of
+URLs. Furthermore, CNNs are used to extract the local n-
+gram characteristics [10], as shown in Fig. 3.
+Fig. 2. URL Filtering
+Fig. 3. MAI Layer-2 Architecture
+IMPLEMENTATION
+Fig. 4 illustrates the flow of the second layer of the MAI,
+and the subsequent explanation of each layer’s functioning
+and the actions taken by it is described below:
+a) InputLayer: Artificial input neurons make up this
+layer, which brings in the first batch of information that
+artificial neurons in later levels will process.
+b) Embedding: Dense vectors are used to represent
+words, with each vector representing the word’s projection
+into a continuous vector space.
+c) Bidirectional(LSTM): It is used to better understand
+the deep representation of URLs, and context dependency is
+extracted. It significantly increases the quantity of information
+that is available to the network, which enhances the context
+that the algorithm can use.
+Authorized licensed use limited to: South Asian University. Downloaded on March 24,2026 at 17:00:45 UTC from IEEE Xplore.  Restrictions apply. 
+2023 11th International Conference on Emerging Trends in Engineering Technology - Signal and Information Processing (ICETET - SIP)
+d) Conv1D: In order to produce a tensor of outputs, this
+layer creates a convolution kernel to capture local n-grams
+characteristics that are convolved with the layer input across
+a single spatial dimension.
+e) BatchNormalization: The technique used to normalize
+the inputs to the layers by re-centering and re-scaling, speeding
+up and improving the stability of artificial neural network
+training.
+f) Activation: The convolutional layer’s activation func-
+tion makes the output more nonlinear. The ReLu function
+is employed in this model as an activation function in a
+convolution layer.
+g) MaxPooling1D: The maximum pooling operation is
+used for 1D temporal data. By picking the maximum value
+across a spatial window with a pool-sized resolution, the input
+representation is downsampled. Strides are used to move the
+window.
+h) Flatten: Used to create a single, extended, continuous
+linear vector from all of the 2-Dimensional arrays generated
+by the pooled feature maps.
+i) Dense: Simple layer of neurons, where each neuron
+receives input from every neuron in the layer above.
+Fig. 4. MAI Layer-2 Flowchart
+RESULT
+MAI identifies the malicious URLs with 99.59% accuracy
+using Bi-LSTM and CNN algorithms. The model’s training
+and validation accuracy are depicted in Fig. 5.
+Fig. 5. Training and Validation Accuracy
+SOCIAL IMPACT
+A lot of people who neglect to double-check the URLs they
+visit benefit from MAI because it stops them from viewing
+malicious URLs on the internet. Now, users can browse the
+web without bothering about checking the URL.
+The URL may often be hyperlinked to an image or other
+piece of media, making it invisible to people. Such hyperlinks
+can be found all over the Internet. Every day, people who use
+the internet for browsing come across numerous hyperlinked
+pieces of media. MAI also keeps an eye on redirection and
+prevents people from falling for the clickbait on the internet.
+Clickbait attracts people by displaying content that they are
+interested in or by using fake news to advance an agenda [11].
+Furthermore, websites like these are sometimes used for terror-
+ist activities to transfer information in various languages [12]
+[13] [14]. MAI protects people from visiting such websites.
+APPLICATIONS
+The applications of MAI include:
+1) World Wide Web: The World Wide Web (WWW) is an
+interconnected network fueled by the collection of links found
+throughout the Internet. The Internet link may be malicious
+and deceive unknowing people. MAI extension will protect
+such people from clicking malicious links.
+2) Social Media: Social media is widely used today, and
+many rumors are disseminated to mislead people. People are
+drawn to these rumors and may click on them, which may
+lead to malicious websites. Where they could disclose their
+personal information [15]. The MAI model can be integrated
+with social media to check for such links.
+Authorized licensed use limited to: South Asian University. Downloaded on March 24,2026 at 17:00:45 UTC from IEEE Xplore.  Restrictions apply. 
+2023 11th International Conference on Emerging Trends in Engineering Technology - Signal and Information Processing (ICETET - SIP)
+3) Email: Malicious links that deceive or harm people can
+also be found in emails. Email can be connected to the MAI
+model to scan every message for malicious links and prevent
+recipients from opening them.
+CONCLUSIONS
+The number of malicious websites and online crime are both
+rising. MAI safeguards people against being duped by mali-
+cious URLs. Stopping people from accessing the malicious
+URLs and blocking the advertisements. It uses a two-layer
+model and is simple to use and manage in order to identify
+malicious URLs.
+REFERENCES
+[1] A. Das, A. Das, A. Datta, S. Si and S. Barman, ”Deep Approaches on
+Malicious URL Classification,” 2020 11th International Conference on
+Computing, Communication and Networking Technologies (ICCCNT),
+2020, pp. 1-6, doi: 10.1109/ICCCNT49239.2020.9225338.
+[2] Y . -C. Chen, Y . -W. Ma and J. -L. Chen, ”Intelligent Mali-
+cious URL Detection with Feature Analysis,” 2020 IEEE Sympo-
+sium on Computers and Communications (ISCC), 2020, pp. 1-5, doi:
+10.1109/ISCC50000.2020.9219637.
+[3] G. Chakraborty and T. T. Lin, ”A URL address aware clas-
+sification of malicious websites for online security during web-
+surfing,” 2017 IEEE International Conference on Advanced Net-
+works and Telecommunications Systems (ANTS), 2017, pp. 1-6, doi:
+10.1109/ANTS.2017.8384155.
+[4] R. K. Nepali and Y . Wang, ”You Look Suspicious!!: Leveraging Visible
+Attributes to Classify Malicious Short URLs on Twitter,” 2016 49th
+Hawaii International Conference on System Sciences (HICSS), 2016,
+pp. 2648-2655, doi: 10.1109/HICSS.2016.332.
+[5] Shantanu, B. Janet and R. Joshua Arul Kumar, ”Malicious URL Detec-
+tion: A Comparative Study,” 2021 International Conference on Artificial
+Intelligence and Smart Systems (ICAIS), 2021, pp. 1147-1151, doi:
+10.1109/ICAIS50930.2021.9396014.
+[6] R. Kumar, X. Zhang, H. A. Tariq and R. U. Khan, ”Malicious URL
+detection using multi-layer filtering model,” 2017 14th International
+Computer Conference on Wavelet Active Media Technology and Infor-
+mation Processing (ICCW AMTIP), 2017, pp. 97-100, doi: 10.1109/IC-
+CW AMTIP.2017.8301457.
+[7] F. Ren, Z. Jiang and J. Liu, ”A Bi-Directional LSTM Model with
+Attention for Malicious URL Detection,” 2019 IEEE 4th Advanced
+Information Technology, Electronic and Automation Control Conference
+(IAEAC), 2019, pp. 300-305, doi: 10.1109/IAEAC47372.2019.8997947.
+[8] S. Nayak, D. Nadig and B. Ramamurthy, ”Analyzing Malicious URLs
+using a Threat Intelligence System,” 2019 IEEE International Confer-
+ence on Advanced Networks and Telecommunications Systems (ANTS),
+2019, pp. 1-4, doi: 10.1109/ANTS47819.2019.9118051.
+[9] Y . Chen, Y . Zhou, Q. Dong and Q. Li, ”A Malicious URL Detection
+Method Based on CNN,” 2020 IEEE Conference on Telecommunica-
+tions, Optics and Computer Science (TOCS), 2020, pp. 23-28, doi:
+10.1109/TOCS50858.2020.9339761.
+[10] L. Zhang and P. Zhang, ”PhishTrim: Fast and adaptive phishing de-
+tection based on deep representation learning,” 2020 IEEE Interna-
+tional Conference on Web Services (ICWS), 2020, pp. 176-180, doi:
+10.1109/ICWS49710.2020.00030.
+[11] A. Yerlekar, N. Mungale and S. Wazalwar, ”A multinomial technique for
+detecting fake news using the Naive Bayes Classifier,” 2021 International
+Conference on Computational Intelligence and Computing Applications
+(ICCICA), 2021, pp. 1-5, doi: 10.1109/ICCICA52458.2021.9697244.
+[12] R. S. Dudhabaware and M. S. Madankar, ”Review on natural language
+processing tasks for text documents,” 2014 IEEE International Confer-
+ence on Computational Intelligence and Computing Research, 2014, pp.
+1-5, doi: 10.1109/ICCIC.2014.7238427.
+[13] Nagdive AS, Tugnayat R, Peshkar A. Int. J. Eng. Adv. Technol. 2020;
+9(3): 2553-2559.
+[14] A. Kaur and U. Shrawankar, ”Adverse conditions and techniques for
+cross-lingual text recognition,” 2017 International Conference on Inno-
+vative Mechanisms for Industry Applications (ICIMIA), 2017, pp. 70-74,
+doi: 10.1109/ICIMIA.2017.7975565.
+[15] P. Maske, K. Pardhi, S. Hatzade, R. Sharma and S. Wazalwar, ”Image
+Security Barrier (ISB): Hide valuable information in image using
+machine learning,” 2022 10th International Conference on Emerging
+Trends in Engineering and Technology - Signal and Information Pro-
+cessing (ICETET-SIP-22), 2022, pp. 1-6, doi: 10.1109/ICETET-SIP-
+2254415.2022.9791749.
+[16] S. K. Tiwari, P. M. Girade, B. P. Khobe, A. Rambhajani, S. Wazalwar
+and M. Khanapurkar, ”The Novel Approach of QR Code detection
+with Smart Glasses,” 2022 10th International Conference on Emerging
+Trends in Engineering and Technology - Signal and Information Pro-
+cessing (ICETET-SIP-22), 2022, pp. 01-05, doi: 10.1109/ICETET-SIP-
+2254415.2022.9791569.
+[17] Wazalwar, S.S., Shrawankar, U. (2023). Sign Language versus Spoken
+English Language—A Study with Supervised Learning System Using
+RNN for Sign Language Interpretation. In: Tiwari, R., Pavone, M.F.,
+Ravindranathan Nair, R. (eds) Proceedings of International Conference
+on Computational Intelligence. Algorithms for Intelligent Systems.
+Springer, Singapore.
+[18] Sampada S. Wazalwar, Urmila Shrawankar,(2017). Interpretation
+of sign language into English using NLP techniques, Journal
+of Information and Optimization Sciences, 38:6, 895-910, DOI:
+10.1080/02522667.2017.1372136.
+[19] S. S. Wazalwar and U. Shrawankar, ”Multimodal Interface for Deaf
+and Dumb Communication,” 2019 6th International Conference on
+Computing for Sustainable Global Development (INDIACom), 2019,
+pp. 418-422.
+[20] P. Patankar, S. Dorle, N. Wyawahare and L. P. Thakre, ”Comparative
+Study on Design Of AI-Based Communication Protocol For V ANET,”
+2022 IEEE 4th International Conference on Cybernetics, Cognition and
+Machine Learning Applications (ICCCMLA), Goa, India, 2022, pp. 451-
+455, doi: 10.1109/ICCCMLA56841.2022.9989247.
+[21] P. Malewar, R. Kadu, R. Kakde, N. P. Wyawahare and R. Agrawal,
+”A Review Paper on Data Sensing and Acquisition Complexity and
+Accuracy in Green House Monitoring Systems,” 2022 10th International
+Conference on Emerging Trends in Engineering and Technology - Signal
+and Information Processing (ICETET-SIP-22), Nagpur, India, 2022, pp.
+1-6, doi: 10.1109/ICETET-SIP-2254415.2022.9791732.
+[22] A. K. Dudhpachare, T. V . Kuthe, C. V . Lalke, N. P. Wyawa-
+hare, R. Agrawal and P. Daigavane, ”Process of RO’s Waste Wa-
+ter Reuse Water Management in Society by Using IOT Automa-
+tion,” 2022 International Conference on Applied Artificial Intelligence
+and Computing (ICAAIC), Salem, India, 2022, pp. 1546-1550, doi:
+10.1109/ICAAIC53929.2022.9792805.
+[23] S Wazalwar, U Shrawankar, Online Healthcare Consultation System for
+Deaf and Dumb During Pandemic Situation, Bioscience Biotechnology
+Research Communications, Special Issue V ol 13 No 14 (2020) Pp-213-
+216,Doi: http://dx.doi.org/10.21786/bbrc/13.14/50.
+[24] Wazalwar, S.S., Shrawankar, U. (2021). Distributed Education System
+for Deaf and Dumb Children and Educator: A Today’s Need. In: Singh
+Mer, K.K., Semwal, V .B., Bijalwan, V ., Crespo, R.G. (eds) Proceedings
+of Integrated Intelligence Enable Networks and Computing. Algorithms
+for Intelligent Systems. Springer, Singapore.
+[25] S Wazalwar, U Shrawankar , Community Cloud Service Model for
+People with Special Needs, Cloud Computing Technologies for Smart
+Agriculture and Healthcare, 47-55, Chapman and Hall/CRC, 2021
+[26] N. A. Karotiya, N. P. Wyawahare and S. L. Haridas, ”Review paper
+on point to point communication with the use of power over Ethernet
+based on VOIP system on asterisk,” 2016 2nd International Conference
+on Advances in Electrical, Electronics, Information, Communication and
+Bio- Informatics (AEEICB), Chennai, India, 2016, pp. 729-732, doi:
+10.1109/AEEICB.2016.7538390.
+[27] A. P. Tembhurne and N. P. Wyawahare, ”Alamouti based on spa-
+tial modulation for data transmission,” International Conference for
+Convergence for Technology-2014, Pune, India, 2014, pp. 1-4, doi:
+10.1109/I2CT.2014.7092179.
+[28] S. Patil, S. Vairagade and D. Theng, ”Machine Learning Techniques
+for the Classification of Fake News,”2021 International Conference
+on Computational Intelligence and Computing Applications (ICCICA),
+Nagpur, India, 2021, pp. 1-5, doi: 10.1109/ICCICA52458.2021.9697267.
+[29] A. Khan and A. V . Sakhare, ”A Gestalt of Data Exploration and
+Conception,” 2015 Fifth International Conference on Communication
+Systems and Network Technologies, Gwalior, India, 2015, pp. 908-912,
+doi: 10.1109/CSNT.2015.240.
+Authorized licensed use limited to: South Asian University. Downloaded on March 24,2026 at 17:00:45 UTC from IEEE Xplore.  Restrictions apply. 

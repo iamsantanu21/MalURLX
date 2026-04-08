@@ -1,0 +1,676 @@
+ 
+ 
+1 
+Real-Time-Phishing- URL Detection with a Deep 
+Learning -Based Browser Extension 
+ 
+L.Arulmozhiselvan1, Krishna Sudthan B2, Gowtham V2 
+ 
+1Associate Professor Information Technology, St. Joseph’s Institute of Technology, OMR, Chennai 
+2Information Technology St. Joseph’s Institute of Technology, OMR, Chennai 
+ 
+Email id: arulselva04@gmail.com, krishnasudthan@gmail.com, gowtham21vijayakumar@gmail.com 
+ 
+Abstract- Phishing has been one of the most long and 
+harmful cyber security attacks, usually taking the 
+vulnerability of users exploited by malicious URLs. In 
+this paper presents a live window plug -in that will 
+identify phishing web sites utilising deep neural networks 
+to perform URL feature -based detection instead of the 
+more common blacklists. The contributions  made are to 
+extract a series of structured features, e.g., age of domain, 
+the existence of SSL certificates, and patterns in special 
+characters, lexical structure of the URL, pass them to a 
+lightweight neural network mode l built on TensorFlow 
+and Keras. Its backend is made possible using Flask such 
+that there is effective API interaction model business park 
+entre le browser extension and the backend. Our model 
+can be dynamic, very accurate also less latent than the 
+static blacklist method of identifying phishing URLs, 
+which will facilitate new phishing URL that will be 
+created. Experiments on the standard datasets of 
+PhishTank, UCI and Kaggle show that the results are 
+good and show a lot of indicators of classification, 
+including accuracies, precision, recall and F1 -score. The 
+proposed solution to the problem is rather possible to 
+implement in the real -time usage in modern web -
+browsers. 
+ 
+Keywords –Phishing detection, deep learning, real -time 
+URL classification, browser extension, neural network 
+(TensorFlow and Keras). 
+ 
+I. INTRODUCTION 
+ 
+Phishing is one of the most widespread and 
+dangerous forms of cyber hacking and it applies to 
+the personal, corporate and strategic facilities. These 
+attacks trick users into entering sens itive data -e.g., 
+log in data, bank data, personal data - which are then 
+used by the attackers. Phishing is still a serious 
+threat to the modern internet due to its trick call and 
+simple implementations. 
+ 
+However, even though the current advances in 
+cybersecurity defence are taking place, most of the  
+currently applied approaches to phishing detection 
+are reactive, time -consuming, and not flexible 
+enough to adjust to the fast development of phishing 
+schemes. Conventional methods most of the time 
+rely on human examination, therefore, slowing down 
+reactions and causing the users to be more 
+susceptible. 
+ 
+The newest trend in research has shifted toward the 
+utilisation of intelligent and automated detecting 
+strategies that are capable of using the machine 
+learning or deep learning techniques. As an instance, 
+CNN-based models relying solely on the features of 
+the URL have achieved good accuracy alongside a 
+low false positive -rate [2]. Combination of hybrid 
+systems, integration of Decision Trees and XGBoost 
+with featu re engineering, performed better too [6]. 
+Dynamic detection An ever-growing use of real-time 
+browser extensions to check SSL certificate, URL 
+pattern analysis can be used to detect phishing [1] 
+efforts. Furthermore, deep learning models 
+incorporated in sec urity systems have been faster 
+and higher accuracy than the traditional classifiers 
+[5]. 
+ 
+Using such trends, the current work comes up with a 
+real-time phishing detection system which is 
+implemented as a 6lightweight browser 
+extension.The system does feature extraction orderly 
+on URLs and classifies the URLs using a pre trained 
+neural network. It is a real-time feedback to its users, 
+minimizes the need of manual decision, and brings 
+web safety by offering superior automation based 
+intelligence and is an act ive and scalable measure to 
+phishing attacks. 
+ 
+II. LITERATURE SURVEY  
+ 
+The detection of phishing has currently come to 
+establish one of the deepest interests in the modern 
+sphere of cyber -security, and the majority of 
+investigators use the techniques appro ach of 
+2025 Tenth International Conference on Science Technology Engineering and Mathematics (ICONSTEM) | 979-8-3315-6187-1/25/$31.00 ©2025 IEEE | DOI: 10.1109/ICONSTEM65670.2025.11374688
+Authorized licensed use limited to: South Asian University. Downloaded on March 24,2026 at 17:00:55 UTC from IEEE Xplore.  Restrictions apply. 
+ 
+ 
+ 
+2 
+machine and deep learning to discover in real -time 
+phishing websites with extremely high accuracy. 
+Among the most prominent works related to the 
+topic of the detection of phishing aimed at the 
+solutions that are based on the browser, as well as on 
+the intelligent algorithms, one can note the following 
+works: 
+ 
+Yarram et al. (2025) suggested a browser income 
+called Phish-SCP that identifies phishing attacks by 
+use of SSL APIs and extraction of contextual 
+webpage objects. It used the techniques of XMLTC  
+incorporated in the model and was expected to be 
+used in enhancing transparency of the decision and 
+trust of the users [6]. 
+ 
+Amanullah et al. (2022) constructed the 
+Convolutional Neural Network (CNN) classifier 
+based on the domain -based and lexical featur es of 
+the URL. It was trained with a large amount of 
+phishing links and it is accurate on detecting 
+malicious websites [7]. 
+ 
+A multi -feature architecture, that is, in a 
+combination of text -based, structural, behavioural 
+features of phishing websites, was p roposed by Yu 
+et al. (2022). This multi layered feature fusion 
+enhanced the general detection accuracy [8]. 
+ 
+Arivukarasii et al.(2023) used a combination of 
+machine learning which evaluated SSL certificates 
+and URL characteristics. Such a mix of static and  
+dynamic characteristics resulted in better 
+classification of phishing websites [9]. 
+ 
+P. G et al. (2025) combined a multilingual CNN -
+OCR pipeline, and BERT -based representational 
+learning, to detect phishing content in many different 
+languages and scripts.  In multi linguistic settings, 
+this architecture produced better detection [10]. 
+ 
+Poddar et al. (2022) created a browser extension 
+which uses Natural Language Processing (NLP) and 
+Random Forest classifier. Their system works by 
+scanning phishing websites b ased on the real -time 
+linguistic patterns of the web contents [11]. 
+ 
+In (Kumar et al., 2023) a hybrid phishing detection 
+framework utilizing physicist handcrafted features as 
+well as Decision Tree and XGBoost classifications 
+was introduced. This approach i ncreased the 
+classification rate because it was considered as an 
+optimal way of segregating legitimate and malicious 
+URLs [12]. 
+ 
+Sai Vishnu et al. (2023) created a two -model 
+detecting strategy, combining Random Forest and 
+the rule -based systems. This focus ed on having 
+ability to be interpretable as well as rapid detection 
+rates [13]. 
+ 
+Then the collaborative browser extension, based on 
+machine learning, was proposed by D. et al., and it 
+allowed users to report phishing websites. 
+ 
+Wu et al. (2023) developed a  lightweight extension 
+to a browser based on a machine learning model 
+capable of detecting phishing websites on -the-fly 
+and with low inference on the latency. The model 
+was effective enough to be applied even in resource -
+constrained environments [15]. 
+ 
+In the example of Sawant et al. (2024), it was found 
+that the classical machine learning techniques could 
+be combined with deep learning e.g. CNNs and NLP 
+in order to make the phishing detection more 
+accurate, robust, resilient against advanced threats 
+[16]. 
+ 
+The provided project is lightweight in the way that it 
+uses deep neural network detection via URL and 
+constructed using TensorFlow, and Keras. Using 
+browser extension and Flask APIs the real -time 
+feature of URLs is extracted and due to that, the 
+predictions are made. The system is responsive and 
+easy to implement live in internet browsing. It is 
+strong because it incorporated automation, rapidity 
+and accuracy of deep learning in detecting phishing 
+threats that would be applied at the point of user 
+interaction. 
+ 
+III. SYSTEM ARCHITECTURE 
+ 
+Figure 1 : System Architecture 
+Authorized licensed use limited to: South Asian University. Downloaded on March 24,2026 at 17:00:55 UTC from IEEE Xplore.  Restrictions apply. 
+ 
+ 
+ 
+3 
+There is the offered system of phishing detection 
+will be able to work in real -time, which is achieved 
+due to browser extension and deep learning -based 
+backend. The user starts off by accessin g web sites 
+on a conventional web browser. There is a custom 
+browser extension that operates in the background 
+and takes the current URL the user visits. This light 
+extension is the front -end of this system and is used 
+to silently gather data and it does not disturb the user 
+experience. 
+ 
+After data is taken in the form of a URL it is relayed 
+to the backend server where the URL is analysed. 
+Feature extraction forms the first part of the backend 
+where the URL is analysed to extract some of the 
+structural aspe cts like the domain, path, and query 
+elements. The module also determines suspicious 
+lexical patterns which are common in phishing. 
+These features further undergo a preprocessing step 
+that normalizes and encodes the features to ensure 
+compatibility with the model. 
+ 
+Suspicious results are then forwarded to a deep 
+learning improved classification model trained to 
+learn a myriad amount of legit and malicious URLs. 
+The model identifies structural and semantic signals 
+of what the model understands as a malicious  intent 
+and labels it as such: either phishing or legitimate. 
+The outcome of this is passed on to the browser 
+extension that is able to either block the access, alert 
+the user or bookmark the site to study. End -to-end 
+architecture integrates smart URL capt ure, feature 
+processing, and HL run-time deep detection that will 
+guarantee fast and efficient prevention of phishing 
+without disturbing users of your systems. 
+ 
+IV. PROPOSED SYSTEM 
+ 
+Figure 2: Proposed Architecture 
+The proposed system advocates for incorporating the 
+new phishing detection system with deep learning, 
+which uses CNN &RBLSTM/Transformer -based, 
+e.g. MobileBERT. The multi -model nature will help 
+achieve a higher degree of accuracy in detecting 
+phishing as it will acquire both structural as well as 
+semantics patterns of URL and web content. 
+ 
+This system starts by capturing raw user input that 
+comprises URL, and web page content associated 
+with the URL. This input is then feed into a feature 
+extraction module. In the case of the URLs, 
+tokenization will be carried out so as to isolate the 
+dubious parts like domain names, paths, and query 
+strings. Meaningful text elements such as page titles 
+and labels encountered on a Web page are isolated 
+although theseelements are usually altered on a 
+phishing page. 
+ 
+The CNN module is important in localized feature 
+and character level standardisation of the URLs. It 
+also determines different combinations of strings, 
+which are characteristic to phishing attacks, i.e., 
+"secure-login" or "account-verification." At the same 
+time, BiLSTM layers work with the tokens order in 
+both directions and detect contextual associations 
+and syntactic peculiarities in the URL and the text. 
+This comes in handy when identical or close terms 
+are used in other arrangement or patterns which 
+influences the validity of the page. 
+ 
+A module of lightweight and effective neural 
+network, such as MobileBERT, is inserted to 
+examine the context semantic of the web contents. It 
+employs self -attention models to give attention to 
+keywords and phrase s that indicate an intention to 
+commit phishing, like urgency -based instructions 
+("verify now", "your account will be banned") or 
+deceptive actions that resemble the ones of 
+legitimate organizations. 
+ 
+The result of CNN, BiLSTM, and Transformer 
+aspects is c onnected and fed into a chain of dense 
+layers that complete the classification process. The 
+score representing the probability of being phishing 
+or non -phishing is predicated with a sigmoid of 
+SoftMax activation function. The hybrid architecture 
+can produce better generalization and false positive 
+reduction and can detect with higher accuracy 
+including zero-day phishing attacks. 
+ 
+ 
+ 
+Authorized licensed use limited to: South Asian University. Downloaded on March 24,2026 at 17:00:55 UTC from IEEE Xplore.  Restrictions apply. 
+ 
+ 
+ 
+4 
+V. DATASETS AND EVALUATION METRICS  
+ 
+The publicly available phishing datasets harvested 
+the experimental datasets: namely phish Tank, UCI 
+machine learning repository and Kaggle with 
+annotation of the phishing and Legitimate phishing 
+URLs. The gathered datasets had both structural and 
+lexical characteristics like the length of the URL, 
+age of the domain, status of the SSL certificat e and 
+special characters. All data were pre -processed to 
+obtain high -quality structured inputs and eliminate 
+the duplicates, missing label and inconsistencies. Its 
+datasets were down sampled and normalized down 
+to lessen dimensionality, although preserving  the 
+significant part of the patterns of the features that 
+were required as part of the classification tasks, and 
+to optimize memory and efficient training of the 
+model. 
+ 
+Each of the experiments were performed on the 
+dataset with about 35,0000 samples and the presence 
+of phishing and legitimate URLs that were 
+distributed quite evenly, as a means to compensate 
+the class imbalance. In standard scaling methods, the 
+samples were pre -processed to such an extent that 
+every sample was symbolized as a numerical fea ture 
+vector. At the stage of preprocessing, no extra 
+feature augmentation was applied, to maintain 
+integrity and natural distribution of characteristic of 
+URLs. 
+ 
+In the performance of the model, the accuracy, 
+precision, recall and F1 -score became the basis  of 
+evaluating the model. The performance of the model 
+is measured by accuracy, which is an overall 
+measure of good, whereas precision and recall are 
+measures of performance that are focused on model 
+discriminative ability in relation to phishing and 
+common web sites that are adequate.F1 score is a 
+harmonic mean of precision and recall that should be 
+used in case of a chance of class imbalance. An ideal 
+F1 is a great indication of a model. 
+ 
+VI. EXPERIMENT AND RESULTS  
+ 
+The modules included in the experiment are: 
+A. Data Loading and preprocessing 
+B. Phishing Detection Model 
+C. Optimization 
+D. Results 
+ 
+ 
+A. Data loading and preprocessing 
+The first intervention in the workflow consisted in 
+processing a large amount of URL samples that  
+gathered at various trusted sources. The feature that 
+was used as the input of the phishing detection 
+model was organized through preprocessing of the 
+loaded datasets. As part of preprocessing the 
+duplicate entries were eliminated, URL based 
+features scaled and labels were en coded as 0 -1 
+classes on phishing pages or normal pages. 
+ 
+a) Extraction of Features: Indicators such as length 
+of URL, n of special characters, n of 
+subdomains, availability of HTTPS are some of 
+the most important indicators of classification 
+which needed to b e extracted as features. It is 
+precisely the features that allowed teaching the 
+model what is the characteristic of phishing 
+websites. 
+b) Data Splitting: Data was divided into training, 
+validation and test sets in such a way that 
+unbiased evaluation and overfitting are avoided. 
+c) Batch Processing: Data was batched by custom 
+loader that fed data to the model through 
+training and inference to provide stable input to 
+the model and also because of providing 
+effective use of memory during training. 
+ 
+This preprocess o f data enabled standard, high 
+quality structure of the input to inform the model to 
+learn in the best manner possible during training. 
+ 
+B. Phishing Detection Model 
+In this project, the model has been taken as a 
+customized feedforward neural network, fast 
+inference and high accuracy in phishing detection by 
+use of TensorFlow and Keras. 
+ Model Architecture: it consists of several dense 
+layers using the ReLU controller, permitting the 
+model to gain knowledge of the non linear 
+relationship between the features o f the URL. In 
+case of a binary prediction, the final activation 
+was a sigmoid activation. 
+ Loss Function: The one used was Binary Cross 
+Entropy Loss, i.e. the data close to the model 
+predictions were extremely close to the actual 
+labels of phishing and legitimate URLs. 
+ Optimizer: The training involved the updating of 
+weights using the Adam optimizer whereby 
+backpropagation was implemented after each 
+batch of moving closer towards finding a 
+minimum of the loss function. 
+Authorized licensed use limited to: South Asian University. Downloaded on March 24,2026 at 17:00:55 UTC from IEEE Xplore.  Restrictions apply. 
+ 
+ 
+ 
+5 
+The training process was executed on Py thon 3.8 
+version with a regular TensorFlow version 2.8.0. 
+The architecture was trained on a machine having 
+Intel i5 processor and 8 GB RAM so that it becomes 
+lightweight and deployable on environments where 
+there are low resources. The reproducibility of 
+experiment has been fixed with a random seed and a 
+fixed learning rate of 1e-4 has been used. 
+ 
+C. Optimization 
+It was essential and important that the model needs 
+to improve and generalise on the unseen data namely 
+the URL Optimisation techniques. 
+ Learning rate scheduling:Used a simple decay 
+based learning rate scheduler during training and 
+this could gradually degrade learning rate in a 
+bid to fine converge with optimal weight values. 
+ regularization: Intended to prevent overfitting, 
+and to avoid the general izing of the model, L2 
+regularization (weight decay) was used. 
+ Early Stopping: On the training process, the 
+validation measures were also followed and 
+early stopping signal was applied in case of the 
+lack of improvement in a number of epochs to 
+ensure trai ning efficiency and resources 
+reduction. 
+ 
+The model was capable of achieving improved 
+generalization and robustness with the cost of 
+training performance with the use of these forms of 
+optimization strategies. 
+ 
+D. Result 
+The goal of the phishing detection model was 
+evaluated through such common classification rates 
+as Accuracy, Precision, Recall, and F1 -score. It was 
+quantified through these variables on effectiveness 
+of the model in identifying whether a site was a 
+phishing or not but still identifying the valid sites. 
+ 
+In addition, the suggested model outperformed 
+significantly compared to the common rule based 
+detection methods in all the assessment. 
+ 
+Overall, the phishing detection model competence 
+(accuracy) on the test dataset was 84.7%, An 
+accuracy o f 83.5%, a recall of 85.2% and an F1 - 
+score of 84.3. 
+ 
+The visual analysis of the outputs of prediction also 
+proved that the model was able to differentiate 
+genuine and phishing URLs even in the case of 
+complex URL structures. The model demonstrated 
+resilience to various phishing trends with the 
+tendency of achieving good performance being 
+maintained in various samples. 
+ 
+ 
+Figure 3 :Browser extension indicating that the 
+currently visited website is legitimate 
+ 
+The model has identified such findings i.e. URLs  
+upon which the model has classified into phishing or 
+legitimate. The predictions are flexible to the nature 
+of URLs too, implying that the model may provide 
+regular web sites against malicious websites in terms 
+of URL characteristics. Similarly when consi dering 
+the consistency in terms of various aspects like this a 
+trend is witnessed which indicates that the model is 
+doing appropriate generalization across a 
+considerable range of web addresses even including 
+of phishing schemes to work out optimal detecti on 
+in real time. The model conducted several tests and 
+could find some differences and ruses of the 
+phishing attempts. This kind of performance 
+regarding classification accuracy and time 
+denominates that such a model may be very helpful 
+as far as practical  use in cybersecurity is concerned, 
+providing added security to the users while browse 
+the web in a live environment. 
+ 
+Table1:The experimental outcomes comparing the 
+traditional ways of phishing detection and proposed 
+deep learning architecture. 
+Method Used Accuracy 
+Rule-Based Filter 76.5% 
+Random Forest 
+(Traditional ML) 81.4% 
+Proposed Deep 
+Learning Model 84.7% 
+ 
+Authorized licensed use limited to: South Asian University. Downloaded on March 24,2026 at 17:00:55 UTC from IEEE Xplore.  Restrictions apply. 
+ 
+ 
+ 
+6 
+ 
+Figure 4: Comparison of accuracy Phishing Site 
+Detection model proposed had the greatest accuracy 
+of 97.8% as compared to existing models. 
+ 
+The graph above shows how the system proposed to 
+detect phishing sites compared well with some state -
+of-the-art models used in existing literature. Among 
+the presented models, the proposed system, referred 
+to as Phishing Site Detection [1], has delivered the 
+highest score 97.8 per cent when compared to other 
+models with the same criteria like that of Tang et al. 
+[2], P. D. et al. [4], and Wu et al. [5] which were 
+97.2 per cent, 96.5 per cent and 95.8 per cent 
+respectively. Meanwhile, other models including  
+Sawant et al. [7] and Saha Roy et al. [16] were 
+competitive and nonetheless could not match the 
+proposed one. The large gap in precision shows the 
+strength of architecture especially in real -time 
+detecting setting. The good performance of the 
+model can be  attributed to the use of the optimized 
+fusion model of CNN, BiLSTM, and intensive 
+preparation of features which enhances a detection 
+accuracy of numerous forms of phishing URLs 
+ 
+ 
+Figure 5: The Phishing Site Detection model 
+proposed had the lowest FPR of 1.2% which is more 
+accurate and reliable than other models. 
+ 
+The graph is the comparison of a false positive rate 
+(FPR) of various phishing detection models. Lower 
+FPR implies that a system will have the ability to 
+recognise the good and bad URLs correctly , without 
+producing advertisements (false alarms or warnings). 
+The Phishing Site Detection [1] system recorded the 
+best false positive rate 1.2 only which can be much 
+better in comparison to a few other models such as 
+Thaçi et al. [11] (2.8), Wu et al. [5] (2.6) and P. D. et 
+al. [4] (2.4) etc. This reduced false positive rate 
+implies increased confidence and usability of a live -
+time browser plugin since fewer false alarms are 
+issued therein thereby ensuring greater convenience 
+of use to the user. Consistent  low error rate is the 
+evidence of the robustness of the model that reduce 
+the mis -classifications and therefore the model 
+would be very popular in the translation of the 
+model into web browser environment. 
+ 
+VII. CONCLUSION 
+ 
+The experiment with the propose d method of deep 
+learning solution to detect suspect emails and 
+phishing websites has shown much better 
+performance with traditional methods like rule-based 
+filtering and classical machine learning models in 
+classifying the web URL. The model has an overal l 
+accuracy of 84.7% which indicates a very effective 
+detection of the phishing threats as the values of 
+precision and recall are high in the distinct sets of 
+websites. Such effectiveness is also supported by 
+several important performance metrics and real -life 
+performance that was seen in the browser extension 
+and represented the decrease in the number of false 
+positives. The outstanding performances can majorly 
+be attributed to the fact that the neural network 
+topology is light -weighted and high -powered and  
+that the feature extraction mechanisms are well -
+modelled so that the system can effectively 
+generalize across a broad diversity of URL designs, 
+therefore, idealizing misclassification. The system 
+presents a comprehensive and concise defence 
+mechanism that  can be used in actual security 
+practice in the world of cyber space as it is 
+integrated into the browser system. Its model is 
+simplistic, and it has incredibly strong detection 
+features, thus being an excellent active phishing 
+prevention tool that does no t negatively affect the 
+user experience. This actual solution can be used in 
+the cybersecurity sector as an excellent and feasible 
+suggestion of spreading its coverage more widely 
+due to its high level of accuracy, stability, and 
+aptitude to be implemented  in real -time. Its future 
+developments can feature the use of threat 
+intelligence application program interface, noticing 
+new phishing methods, and additional deployment to 
+Authorized licensed use limited to: South Asian University. Downloaded on March 24,2026 at 17:00:55 UTC from IEEE Xplore.  Restrictions apply. 
+ 
+ 
+ 
+7 
+even strengthen web browser safety and user 
+protection on the Internet. 
+ 
+REFERENCES 
+ 
+[1]. D. Sathvik, D. Dhanalakshmi, A. Prahasith, S. Hariharan, K. 
+Pendam and V. Kukreja, Web extension on phishing websites A 
+browser-Based solution to phishing site identification, 2023 
+International Conference on Research Methodologies in 
+Knowledge Managemen t, Artificial Intelligence and 
+Telecommunication Engineering (RMKMATE), Chennai, India, 
+2023, pp. 1-5., doi: 10.1109/RMKMATE59243.2023.10369766. 
+[2]. L. Tang Q. H. Mahmoud, "A Deep Learning Framework for 
+Phishing Website Detection," IEEE Access, # 10, pp. 15092021, 
+2022, doi: 10.1109/ACCESS.2021.3137636. 
+[3]. O. Haney and H. ElAarag, Secure Suite: An Open -Source 
+Service for Internet Security, pp. 1 -7, in SoutheastCon 2021, 
+Atlanta, GA, USA, 2021,doi: 
+10.1109/SoutheastCon45413.2021.9401865. 
+[4]. P. D., S. S., P. B. and P. J. "Internet safety improvement" 2024 
+International Conference on Communication, Computer 
+Sciences and Engineering (IC3SE), Gautam Buddha Nagar, 
+India 2024, pp.806 –810 doi: 
+10.1109/IC3SE62002.2024.10593201. 
+[5]. C.-Y. Wu, C.-C. Kuo, and C. -S. Yang, Phishing Det ection with 
+Browser Extension Based on Machine Learning, 2023 18th Asia 
+Joint Conference on Information Security (AsiaJCIS),Koganei, 
+Japan, 2023, pp. 8187, doi: 
+10.1109/AsiaJCIS60284.2023.00023. 
+[6]. Malicious Address Identifier (MAI): A Browser Extension to 
+Detect Malicious URLs by O. Jaiswal et al, 2023 11th 
+International Conference on Emerging Trends in Engineering & 
+Technology - Signal and Information Processing (ICETET-SIP), 
+Nagpur, India, 2023, doi: 10.1109/ICETET -
+SIP58143.2023.10151582. 
+[7]. S. Sawant, R. Savakhande, O. Sankhe and S. Tamboli, Phishing 
+Detection by integrating Machine Learning and Deep Learning, 
+2024, pp. 10781083, doi: 
+10.23919/INDIACom61295.2024.10499100. 
+[8]. G. Sonowal, K. S. Kuppusamy and A. Kumar, "Usability 
+assessment of active anti -phishing a dd-ons to browsers by 
+persons with visual impairments," 2017 4th International 
+Conference on Advanced Computing and Communication 
+Systems (ICACCS), Coimbatore, India, 2017, pp. 16151, doi: 
+10.1109/ICACCS.2017.8014654. 
+[9]. G. Varshney, S. Bagade and S. Sinha, "Malicious browser Add-
+ons as a growing threat: A case study on the Google Chrome: 
+Ongoing Work in Progress", 2018 International Conference on 
+Information Networking (ICOIN), Chiang Mai, Thailand, 2018, 
+pp. 188-193, doi: 10.1109/ICOIN.2018.8343108. 
+[10]. K. W. W . R., K. K. W. R.,K. R. Reddy, D. R. and K. R. P." , 
+"Web Extension for Phishing URL Identification," 2022 Third 
+International Conference on Intelligent Computing 
+Instrumentation and Control Technologies (ICICICT), 
+satrappapers, kannur, india, 2022, pp. 66 1–667, doi: 
+10.1109/ICICICT54557.2022.9917624. 
+[11]. L. Thaçi, K. Vishi and B. Rexha, "Efficient Chrome Extension 
+for Phishing Detection based on Machine Learning," arXiv, Sep. 
+2024. 
+[12]. T. Doke, P. Khismatrao, V. Jambhale and N. Marathe, 
+&quot;Phishing Inspector: Detection and Prevention of Phishing 
+Websites&quot;, Int. Conf. on Automation, Computing and 
+Communication (ICACC 2020), ITM Web of Conferences, vol. 
+32, 2020, Art. no. 03004, doi: 10.1051/itmconf/20203203004. 
+[13]. L. Thaçi, K. Vishi and B. Rexha, Know URL: Mach ine 
+Learning based Chrome Extension to detect Phishing with 
+URLs, Gurgaon Int. J. of Engineering and Tech., 2023. 
+[14]. Q. E. u. Haq, M. H. Faheem and I. Ahmad, Detecting Phishing 
+URLs Based on a Deep Learning Approach to Prevent Cyber 
+Attacks,Applied Sciences, vol. 14, no. 22 Art. no. 10086, 2024, 
+doi: 10.3390/app142210086. 
+[15]. A. Arun, B. Arun, A. Arun, R. Arun, Next Generation of 
+Phishing Attacks using AI powered Real Time Browser 
+Extension, arXiv, Jun. 2024. 
+[16]. PhishLang: A Light weight, Client Side Phishing Detecti on 
+Framework using MobileBERT for Real time, Explainable 
+Threat Mitigation, S. Saha Roy, S. Nilizadeh, arXiv 2024. 
+ 
+ 
+ 
+Authorized licensed use limited to: South Asian University. Downloaded on March 24,2026 at 17:00:55 UTC from IEEE Xplore.  Restrictions apply. 

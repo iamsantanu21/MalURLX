@@ -1,0 +1,636 @@
+3rd IEEE International Conference on AI in Cybersecurity (ICAIC)
+A Holistic Review on Detection of Malicious
+Browser Extensions and Links using Deep Learning
+Rama Abirami K
+Curtin University, Malaysia
+University of Western Santa Catarina, Brazil
+rama.abirami@curtin.edu.my
+Tiago Zonta
+University of Western Santa Catarina
+Santa Catarina, Brazil.
+tiago.zonta@unoesc.edu.br
+Mithileysh Sathiyanarayanan
+MIT Square
+London, UK.
+s.mithileysh@gmail.com
+Abstract—The growth of the Internet has aroused people’s
+attention toward network security. A secure network environment
+is fundamental for the expeditious and impeccable development
+of the Internet. The majority of internet-based tasks can be
+completed with the help of a web browser. Although many web
+applications add browser extensions to improve their functional-
+ity, some of these extensions are malicious and can access sensitive
+data without the user’s knowledge. Browser extensions with mali-
+cious intent present a growing security concern and have quickly
+become one of the most prevalent methods used to compromise
+Internet security. This is largely due to their widespread usage
+and the extensive privileges they possess. After being installed,
+these malicious extensions are executed and make an attempt to
+compromise the victim’s browser. This makes them particularly
+elusive and challenging to combat. It is crucial to promptly
+develop an effective strategy to address the threats posed by these
+extensions. A comprehensive review of the research on browser
+extension vulnerabilities is presented in this paper. The role of
+malicious links in web browser extensions are examined for sev-
+eral attacks. Detection of malicious browser extension on various
+aspects are represented namely Intrusion malicious web browser
+extensions detection using Intrusion detection, Machine learning
+based detection methods and Deep learning based techniques to
+mitigate malicious web browser extensions are examined. This
+study investigates the critical function of malicious detection in
+protecting web browsers, looking at the changing threats and
+risk-reduction tactics. A robust cybersecurity frameworks can be
+created that not only respond to known threats but also anticipate
+and thwart the strategies of future cyber adversaries by realizing
+the significance of proactive detection. Thus this survey provides
+a detailed comparison of various solutions for malicious browser
+extension.
+Index Terms —Cyber-attacks, Machine learning, Malicious
+Browser extension, and Malicious Uniform Resource Locator
+(URL).
+I. I NTRODUCTION
+Cybersecurity is the discipline of defending data, networks,
+and computer systems against damage, attacks, and unau-
+thorized access. It includes a variety of tools, procedures,
+and controls intended to protect digital data and guarantee
+the privacy, availability, and integrity of vital resources [1].
+The need for strong cybersecurity strategies to combat these
+ever-growing challenges is highlighted by the fact that cyber
+threats, which range from ransomware and phishing attacks
+to advanced persistent threats, are becoming more and more
+sophisticated due to the increased sophistication of malicious
+actors.
+The different kinds of cyber incidents and their effects on
+different industries [2] are depicted in the Figure 1. People
+can engage with all the information on the Internet via web
+browsers, such as Internet Explorer, Opera, Firefox, Safari,
+and Chrome. To make them more functional, the extensions
+are permitted to leverage browser features, such as browser
+history, bookmarks, webpage resources, and favorite social
+features, to enhance and personalize the user’s surfing experi-
+ence. Users can download a variety of extensions from third-
+party websites or from the official storefronts of the browser
+providers, such as Opera Add-Ons, Safari Extensions Gallery,
+and Chrome Web Store [3].
+Threats posed by web browser extensions to privacy are
+a serious cybersecurity issue because they increase attack
+surfaces and make different types of exploits possible [4].
+These threats—which include malware distribution, phishing,
+resource exploitation, and unauthorized access—highlight the
+necessity of implementing thorough security measures. In
+order to mitigate these risks and protect against ever-evolving
+cyber threats, careful extension vetting, user education, and
+proactive security strategies are necessary.
+Cyber security solutions which are traditional defense mech-
+anisms are a firewall, antivirus software or an intrusion detec-
+tion system in network and computer security systems. Data
+science is revolutionizing in various fields, and one area where
+Fig. 1. Cyber Incidents by Industry
+979-8-3503-8185-6/24/$31.00 ©2024 IEEE
+2024 IEEE 3rd International Conference on AI in Cybersecurity (ICAIC) | 979-8-3503-8185-6/24/$31.00 ©2024 IEEE | DOI: 10.1109/ICAIC60265.2024.10433842
+Authorized licensed use limited to: South Asian University. Downloaded on March 24,2026 at 17:48:25 UTC from IEEE Xplore.  Restrictions apply. 
+TABLE I
+RELATED WORKS
+Phishing Attack [7] The attackers may take advantage of security holes or permissions in the extension’s code through
+Phishing emails and websites to obtain unauthorized access or steal confidential data.
+SQL Injection [8]
+Web pages can have malicious scripts or code injected into them by using malicious links. Clicking
+on such a link could cause a user with a compromised browser extension to unintentionally run the
+injected code, which could result in data theft, session hijacking, or other unauthorized actions on
+the user’s part.
+Drive-by downloads [9] Drive-by download attacks, in which malicious files are automatically downloaded and installed
+on a user’s device, can be initiated by malicious links.
+Man-in-the-Browser Attacks [10]
+When a user clicks on one of these links, the compromised extension might intercept and alter the
+user’s communication with the website, which could result in theft, tampering with data, or illegal
+activities.
+Extensions Phishing [11] A gullible users might download and install a malicious extension, which could compromise their
+online accounts, sensitive data, or browser.
+Social Engineering Exploitation [12] Social engineering techniques are frequently used by malicious links to trick users.
+Cross-Site Scripting (XSS) [13]
+Clicking on such links may result in the execution of malicious scripts within the context of the
+browser extension, potentially compromising user data or session information, if the extension
+is not properly secured against XSS attacks.
+Updates on Compromised Extensions[14] Users who click on these links and download a compromised update run the risk of their browser
+extension becoming infected with malware or opening the door for more attacks on their system.
+it has made a significant impact is in the realm of cyber
+security. With the advent of machine learning, a crucial aspect
+of Artificial Intelligence (AI), data scientists are now able
+to uncover hidden patterns and insights from vast amounts
+of data [5]. In the domain of cyber security, where threats
+are constantly evolving and becoming more sophisticated,
+machine learning algorithms can play a vital role in detecting
+and preventing potential attacks. By analyzing large datasets
+and identifying anomalous behavior, these algorithms can help
+organizations stay one step ahead of cyber criminals [6].
+Deep learning methods have great potential to strengthen
+cybersecurity against new threats from web browser exten-
+sions. Because deep learning allows for real-time monitor-
+ing and dynamic behavioral anomaly detection, it offers a
+revolutionary way to combat threats posed by sophisticated
+web browser extensions. Using deep learning in cybersecurity
+offers a proactive and robust way to deal with the intricate
+and quickly evolving world of browser extension threats. The
+main aim of this paper is to show a holistic review of various
+machine learning and deep learning methods used to mitigate
+malicious browser extensions. The objective of this survey
+is to present a distinct goal of thoroughly examining the
+state of the art in cyber security research, methodologies,
+and advancements, with a particular emphasis on the use of
+deep learning techniques to recognize and mitigate the threats
+posed by malicious links and insecure browser extensions. The
+contribution of this survey examine the current obstacles and
+constraints on various malicious detection systems, particu-
+larly with regard to web browser extensions and links.
+The organization of the literature is as follows: Section II
+depicts Role of Malicious Links in Web browser extension
+Exploitations. Section III shows Intrusion detection methods to
+mitigate web browser extension attacks are discussed. Section
+IV shows the literatures supports machine learning based tech-
+nique to detect browser extension attacks. Section V depicts
+the state-of-art datasets, data preprocessing techniques in Deep
+learning techniques are examined. Section VI represents the
+opportunities and challenges in existing web browser extension
+solutions. Section VII shares the comprehensive conclusion of
+the study.
+II. ROLE OF MALICIOUS LINKS IN WEB BROWSER
+EXTENSION EXPLOITATIONS
+Malicious links and browser extensions are related because
+they can be exploited to compromise user security. Attacks
+can be launched through malicious links, and the dangers
+increase when browser extensions are used in conjunction with
+them. An examination of the connection between these two
+components is provided below as in Table I:
+III. DETECTION OF MALICIOUS BROWSER
+EXTENSION BASED ON AN INTRUSION
+DETECTION METHOD
+In [14] the authors examined 922,684 different malicious
+versions of extensions. The authors suggest a two-step method
+that locates the code that was added to a benign extension to
+turn it malicious and first distinguishes malicious extensions
+based on anomalous extension ratings. Some find it difficult
+to understand the complex euphemisms incorporated into
+privacy policies, while others lack the funds to pay for privacy
+protection services. In response to this issue, in [15] developed
+Secure Suite, an Internet security software package that they
+make available as open source, meaning it is free of cost. This
+malicious Uniform Resource Locator (URL) detection service
+is called MalURLNet. It consists of a password manager, a
+URL extender, data visualization tools, a browser extension
+for interacting with the web application, and utility tools for
+preserving data integrity. The purpose of intrusion detection,
+a crucial component of cybersecurity technology, is to track
+and examine network traffic from multiple sources in order to
+identify malicious activity. Numerous surveys of a broad range
+of machine learning and deep learning technique-based intru-
+sion detection research works, including Deep Belief Networks
+Authorized licensed use limited to: South Asian University. Downloaded on March 24,2026 at 17:48:25 UTC from IEEE Xplore.  Restrictions apply. 
+(DBN), have been conducted, but they have not succeeded in
+providing an exhaustive analysis of all the factors pertaining to
+the DBN-based intrusion detection models [16]. An intrusion
+prevention system (IPS) is an extension of a detection system
+that initiates pertinent action when an intrusion is suspected
+in a futuristic aspect. An intrusion detection system (IDS) is a
+secondary intelligent system to monitor, detect, and alert about
+malicious activities. According to [17] this survey is the first to
+present a mapping technique study of risk factor analysis and
+to propose a hybrid framework for an effective security model
+for intrusion detection and/or prevention. Given the situation,
+intrusion detection systems (IDSs) are now an essential tool for
+spotting malicious activity, anomalous behaviors, and cyberat-
+tacks that jeopardize the integrity and legitimacy of networked
+information services. Current intrusion detection techniques
+that rely on feature selection are still plagued by issues such
+as high computational complexity or inadequate robustness. A
+unique ensemble feature selection-based deep neural network
+(EFS-DNN) is proposed by [18] to address these issues and
+detect attacks in networks with high volumes of traffic data.
+IV. DETECTION OF MALICIOUS BROWSER
+EXTENSION BASED ON MACHINE LEARNING
+TECHNIQUES
+In [19], the authors propose a novel method for classifying
+webpages based on keyword density and context using three
+supervised machine learning techniques: maximum entropy,
+extreme learning machine, and support vector machine. In [20]
+employed C4.5 as the classification algorithm after analyzing
+visual brand entities such as the favicon, logo, and copyright
+notice in phishing websites, extracting brand features and
+brand authorization features. In order to distinguish the site
+with branding rights from phishing sites, incoming links,
+redirection, and DNS information-based brand authorization
+features are further extracted to address this issue. This [21]
+created a feature for target identification that can recognize the
+target website that a phishing webpage is trying to imitate. This
+phishing detection system’s target detection component can
+reduce false positives and operates faster than previously doc-
+umented systems. The feature set incorporates inherent phisher
+limitations, making the system resistant to adaptive attackers
+who modify phishes to evade detection. The fundamental
+phishing detector component is quick and does not require
+internet access to centralized data. As such, it is ideal for
+a client-side implementation that respects privacy. The target
+brand identification component of this model can extract a set
+of keyterms that describe a webpage using a straightforward
+technique. If the webpage is a phish, the model use the
+keyterms set to identify its target. This work [22] incorporated
+optical character recognition for information extraction from
+the images and remaining other potential helpful information.
+This work [23] aims to develop a Chrome extension that will
+operate as a go-between for users and malicious websites,
+reducing the likelihood that users will fall victim to them.
+Furthermore, since harmful content is constantly evolving, it
+is impossible to compile all of it. In order to combat this,
+the authors employed machine learning to train the tool and
+classify newly discovered content into specific categories each
+time, allowing appropriate action to be performed. SVM was
+utilized by in [24] to find malicious URLs on Facebook. In
+[25], the authors used Random Forest as the classifier after
+extracting features from user-provided URLs and source code.
+V. DETECTION OF MALICIOUS BROWSER
+EXTENSION BASED ON A DEEP LEARNING
+TECHNIQUES
+A. Web Browser Attacks
+A class of attacks known as ”extension revelation attacks,”
+in which extensions expose themselves by inserting their code
+onto websites, is examined by [26]. It offer a proof of concept
+implementation that prevents both types of attacks namely
+probing and revelation attacks as a countermeasure and suggest
+a browser-based mechanism that permits control over which
+extensions are loaded on which web pages. Small programs
+run in the browser context, known as browser extensions, add
+features and improve the online browsing experience for users.
+A multitude of factors, including the relative installation times
+of each extension, determine the order in which it operates. A
+multitude of factors, including the relative installation times
+of each extension, determine the order in which it operates.
+B. Datasets
+A good model must be designed with large datasets for
+training. The need for fresh and high-quality datasets has
+grown in response to the rise in phishing attacks in recent
+years, as model performance has to improve. Thus, in order
+to gain a deeper understanding of the state-of-the-art mod-
+els, datasets are to be examined. Thus, benign, widely-used
+datasets and phishing sites are listed in Table II [27]. The
+following is a review of the most popular phishing detection
+datasets found in state-of-the-art papers.
+• PhishTank [28] is the most widely used dataset for phish-
+ing detection models. Cisco Talos Intelligence Group
+(Talos) operated blacklist containing around 7 million
+phishing URL records. At present, nearly two million
+records are certified as phishing. Moreover, 11000 URLs
+of the two million are online, and the rest are offline
+because the phishing URL are removed whenever the
+attacks are performed. If it is an online URL, then it
+could be viewed using PhishTank.
+• A data set called NSL-KDD [29] is proposed to address
+a few of the KDD’99 data set’s intrinsic issues, which
+are listed in [30]. Moreover, the NSL-KDD train and test
+sets have a respectable amount of records.
+• ISCX-URL 2016 [31]: It examine a low-tech method for
+identifying and classifying malicious URLs based on the
+nature of their attacks, and it demonstrate the efficacy
+and efficiency of lexical analysis in proactive detection of
+these URLs. It primarily examine five categories of URLs
+namely Benign URLs, Spam URLs, Phishing URLs,
+Malware URLs, and Defacement URLs.
+Authorized licensed use limited to: South Asian University. Downloaded on March 24,2026 at 17:48:25 UTC from IEEE Xplore.  Restrictions apply. 
+TABLE II
+LIST OF DATASETS
+S.No Name Last update Type Link
+1. PhishTank 2021 Phishing https://phishtank.org/index.php
+2. Alexa 2021 Benign https://www.alexa.com/topsites
+3. JoeWein 2021 Phishing https://joewein.net/
+4. Common Crawl 2021 Benign https://commoncrawl.org/
+5. Open Phish 2021 Phishing https://openphish.com/
+6. Phishing Army 2021 Phishing https://phishing.army/
+7. Kaggle 2021 Benign https://www.kaggle.com/datasets
+8. UCI ML repository 2021 Phishing http://archive.ics.uci.edu/
+9. Phishing -Dataset 2022 Phishing https://github.com/GregaVrbancic/Phishing-dataset
+10. Parsed DMOZ data 2022 Benign https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/OMV93V
+11. Yahoo 2022 Benign https://webscope.sandbox.yahoo.com/?guccounter=1
+12. Yandex 2022 Benign https://yandex.com/dev/xml/
+13. Phishload 2022 Phishing https://www.medien.ifi.lmu.de/team/max.maurer/files/phishload/
+• The OpenPhish Database [32] is an archive of searchable,
+structured data on all the phishing websites that Open-
+Phish has identified. It is updated on a regular basis. The
+metadata in the database can also be utilized as a training
+or validation dataset for AI applications, as well as for
+the detection and analysis of cyber incidents and trend
+analysis.
+• UCI ML repository [33]: The goal of the UCI dataset is to
+support network intrusion detection research. In addition
+to numerous cyberthreats like denial of service (DoS)
+attacks, malware infections, port scanning, brute force
+attacks, and phishing, it also contains synthetic data that
+mimics typical traffic. There are 100,000 records in the
+dataset, equally divided between malicious and legitimate
+activity.
+• Alexa [34] is a website maintained by Amazon that
+provides analytic tools to analyze the performance of the
+websites. It performs website ranking, which is a tool that
+is used to rank Uniform Resource Locator (URLs) that
+are benign based on probability.
+• Joe Wein [35] is an open-source API containing About
+15000 phishing URL that are blacklist.
+• Common Crawl [36] is a website which crawls over the
+web and suggest many datasets of legitimate website and
+their metadata namely page content, URL, etc.
+C. Deep Learning Process
+Deep Learning (DL) represents the following steps namely
+data collection, data preprocessing, model training and model
+evaluation [7].
+1) Data Preprocessing: The initial step in machine learning
+and DL task is data preprocessing. It gets ready-made text,
+image, and other raw data ready for model classification.
+The data preprocessing used for URL-based and hybrid-based
+phishing detection is examined in this section. Three steps are
+involved in working with raw data: data cleaning, tokenization,
+and representation. Data cleaning first eliminates extraneous
+information from the input, such as special characters, stop-
+words, and data noise. On the other hand, a URL has special
+characters that stand for important information. For instance,
+a URL fragment is represented by the hash symbol ”#.” As
+a result, it’s crucial to remove special characters carefully to
+avoid losing any crucial information from the URL. Therefore,
+the majority of URL-based models, including [37], [38], [39],
+and [40], do not require data cleaning.
+Tokenization is an essential step in the data preprocessing
+process of deep learning. Tokenization is the process of
+dividing a text into smaller units called tokens, which are
+usually words or subwords. Through this procedure, raw text
+data can be transformed into a format that deep learning
+models can comprehend and handle efficiently. The input
+data for the URL-based can be divided into character-level
+segments, like [37], [39], and [41]. It can also be divided
+into words, like in [42]. Additionally, some papers—like
+[38], [40] and [43]—combine word-level and character-level
+analysis. Using URL symbols like ”.,” ”:,” ”//,” and so forth,
+one can divide URLs into word-level segments. For model
+training in deep learning data preprocessing, effective data
+representation is crucial. Wordembedding for natural language
+processing, one-hot encoding for categorical variables, and
+normalization or standardization for numerical features are
+examples of common techniques. Sequence padding guaran-
+tees that the input shapes are consistent, and preprocessing for
+image data includes augmentation, normalization, and resizing.
+An increasingly stable dataset is a result of feature scaling
+and missing data management. The type of data and the
+particular requirements of the deep learning task determine
+which representation is best.
+2) Deep Learning Modeling: Deng and Yu [44] di-
+vide deep learning techniques into two categories: gener-
+ative/unsupervised models and deep discriminative models.
+Three methods are used in the deep discriminative mod-
+els: convolutional neural networks, deep neural networks,
+and recurrent neural networks. Deep autoencoders, restricted
+Boltzmann machines, deep Boltzmann machines, and deep
+belief networks are the four generative/unsupervised model
+approaches. The broadly used deep learning algorithms for
+detecting malicious web browser extensions are as follows:
+a) CNN:: Convolutional neural networks (CNNs) are a
+popular feedforward deep learning algorithm for classifying
+Authorized licensed use limited to: South Asian University. Downloaded on March 24,2026 at 17:48:25 UTC from IEEE Xplore.  Restrictions apply. 
+images. A CNN’s regular architecture is made up of several
+layers, which are followed by the input, hidden, and output
+layers. Convolutional, pooling, and fully connected layers are
+frequently found in hidden layers [45].
+b) Recurrent neural networks (RNNs):: RNNs are deep
+neural networks that can process text and other inputs of vary-
+ing lengths because they have an internal memory function.
+As a result, text mining has successfully used it [46].
+c) Long Short-Term Memory (LSTM) models [47]: is
+used in deep learning in solving problems such as the vanish-
+ing gradient problem and capturing long-term dependencies
+in sequential data. The fundamental elements of long short-
+term memory (LSTMs), such as the cell state, forget gate,
+input gate, and output gate. The functionality of gates is
+information processing and retention. Because of their ability
+to handle sequential data, Long Short-Term Memory (LSTM)
+models have found extensive applications in cybersecurity
+and are a good fit for a variety of security-related tasks.
+LSTMs are particularly useful in network intrusion detection,
+where they can examine network traffic patterns and iden-
+tify unusual activity that could be a sign of a cyberattack.
+LSTMs are particularly good at detecting malware because
+they can analyze the temporal patterns of code execution and
+uncover malicious activity that may be hidden in a system’s
+dynamic behavior. When compared to conventional methods,
+their capacity to maintain contextual information over long
+sequences improves the detection accuracy. Log analysis and
+cybersecurity event prediction are two applications for LSTMs.
+Sequential log processing enables LSTMs to spot patterns
+that precede security incidents and offer insights into possible
+threats before they materialize.
+VI. OPPORTUNITIES & CHALLENGES
+The research on the mitigation of web browser attacks is
+constantly evolving. However, there are still challenges or
+drawbacks in web browser extension solutions.
+A. Optimal Quality datasets
+The size and validity of the training dataset have a signif-
+icant impact on the performance of machine learning-based
+solutions. The power law states that as the size of the training
+data increases, deep learning performance increases as well.
+This is contingent upon the stability of the websites or services
+provided by third parties [48].
+B. Strategic feature extraction & selection techniques
+Feature extraction and selection faces two difficulties
+namely: High-dimensional input spaces and Data variabil-
+ity. The former still have challenges associated with high-
+dimension data and the curse of dimensionality and there
+is a need for dimensionality reduction strategies. In later, it
+examines the difficulties caused by the distribution of data’s
+variability and it represents the impact of noisy and irrelevant
+features on model performance [49].
+C. Tiny URL detection
+Due to the widespread usage of URL shortening services
+for link sharing, TinyURLs present a serious cybersecurity
+risk since they give attackers the chance to conceal the
+destination of malicious links. To effectively address the risks
+associated with malicious TinyURLs, a multifaceted approach
+combining collaborative threat intelligence, machine learning,
+and behavioral analysis is essential [50].
+D. Real time systems and its effective responses
+Rule-based models rely on third-party services from a URL
+string and rule parsing. As such, in a real-time prediction
+system that takes a single URL string as an input in every
+client request, they require a comparatively long response
+time [50]. Moreover, rule based model highly depend on
+heuristics and patterns which makes them least adaptable to
+cyber threats.
+VII. C ONCLUSION
+This survey highlights the growing importance of DL in
+addressing cybersecurity challenges, specifically in the context
+of web browser extension attacks. It thoroughly examines
+how browser extensions can be manipulated to spread ma-
+licious content, underscoring the security risks they pose.
+The investigation reveals the sophisticated methods by which
+extensions can serve as vectors for cyber threats, including the
+dissemination of harmful links. The survey delves into various
+cybersecurity risks and explores detection mechanisms, with
+a focus on the novel integration of malicious link analysis
+into the exploitation of web browser extensions. This demon-
+strates how attacks can escalate through the combined use of
+malicious links and browser extensions. The survey analyzes
+different strategies to mitigate these risks, spotlighting the role
+of intrusion detection, machine learning, and deep learning
+techniques. It reviews extensive literature on the stages of DL
+processes and modeling, presenting efficient methodologies
+to combat cyber threats. The challenges in detecting and
+mitigating these risks are discussed, along with the necessity of
+advanced DL techniques to enhance online security. Finally,
+the open challenges and future directions to mitigate mali-
+cious web browser extensions are investigated. This survey is
+capable to elicit further discussion and research on dynamic
+defense to deter malicious web browser extensions.
+REFERENCES
+[1] A. Salih, S. T. Zeebaree, S. Ameen, A. Alkhyyat and H. M. Shukur,
+“A Survey on the Role of Artificial Intelligence, Machine Learning and
+Deep Learning for Cybersecurity Attack Detection,” 7th International
+Engineering Conference (Research & Innovation amid Global Pandemic
+(IEC)), Erbil, Iraq, 2021, pp. 61-66, doi:10.1109/IEC52205.2021.9476132.
+[2] https://www.statista.com/statistics/1315805/cyber-attacks-top-industrie
+s-worldwide/.
+[3] Yao Wang, Wandong Cai, Pin Lyu, and Wei Shao, “A Combined Static
+and Dynamic Analysis Approach to Detect Malicious Browser Extensions,”
+Security and Communication Networks, Hindawi, V olume 2018.
+[4] Julian Jang-Jaccard, Surya Nepal, “A survey of emerging threats in
+cybersecurity,” Journal of Computer and System Sciences, V olume 80,
+Issue 5, 2014, Pages 973-993.
+[5] Tolle, K.M.; Tansley, D.S.W., Hey, A.J, “The fourth paradigm: Data-
+intensive scientific discovery ”, Proc. IEEE 2011, 99, 1334-1337.
+Authorized licensed use limited to: South Asian University. Downloaded on March 24,2026 at 17:48:25 UTC from IEEE Xplore.  Restrictions apply. 
+[6] Benioff, M. “Data, data everywhere: A special report on managing
+information” (pp. 21–55). The Economist, 27 February 2010.
+[7] Sultan Asiri, Yang Xiao, Saleh Alzahrani, Shuhui Li, And Tieshan Li, “A
+Survey of Intelligent Detection Designs of HTML URL Phishing Attacks”,
+IEEE Access, January 2023, doi:10.1109/ACCESS.2023.3237798.
+[8] M. Qbea’h, M. Alshraideh and K. E. Sabri, “Detecting and Preventing
+SQL Injection Attacks: A Formal Approach,” 2016 Cybersecurity and
+Cyberforensics Conference (CCC), Amman, Jordan, 2016, pp. 123-129,
+doi:10.1109/CCC.2016.26
+[9] A. K. Sood and S. Zeadally, “Drive-By Download Attacks: A Com-
+parative Study,” in IT Professional, vol. 18, no. 5, pp. 18-25, doi:
+10.1109/MITP.2016.85.
+[10] M. Conti, N. Dragoni and V . Lesyk, “A Survey of Man In The Middle
+Attacks,” in IEEE Communications Surveys & Tutorials, vol. 18, no. 3,
+pp. 2027-2051, 2016, doi:10.1109/COMST.2016.2548426.
+[11] M. A. Syafiq Rohmat Rose, N. Basir, N. F. Nabila Rafie Heng, N. Juana
+Mohd Zaizi and M. M. Saudi, “Phishing Detection and Prevention using
+Chrome Extension,” 10th International Symposium on Digital Forensics
+and Security (ISDFS), Istanbul, Turkey, 2022, pp. 1-6, doi:10.1109/ISDF
+S55398.2022.9800826.
+[12] Z. Wang, L. Sun and H. Zhu, “Defining Social Engineering in Cyberse-
+curity,” in IEEE Access, vol. 8, pp. 85094-85115, 2020, “doi: 10.1109/AC-
+CESS.2020.2992807”.
+[13] G. A. Di Lucca, A. R. Fasolino, M. Mastoianni and P. Tramontana,
+“Identifying cross site scripting vulnerabilities in Web applications,” Sixth
+IEEE International Workshop on Web Site Evolution, Chicago, IL, USA,
+2004, pp. 71-80, “doi: 10.1109/WSE.2004.10013”.
+[14] Nikolaos Pantelaios, Nick Nikiforakis, and Alexandros Kapravelos,
+“You’ve Changed: Detecting Malicious Browser Extensions through their
+Update Deltas,” 2020 ACM SIGSAC Conference on Computer and Com-
+munications Security (CCS ’20). Association for Computing Machinery,
+New York, NY , USA, pp: 477-491, 2020.
+[15] O. Haney and H. ElAarag, “Secure Suite: An Open-Source Service for
+Internet Security,” SoutheastCon 2021, Atlanta, GA, USA, 2021, pp. 1-7,
+doi:10.1109/SoutheastCon45413.2021.9401865.
+[16] Insoo Sohn, “Deep belief network based intrusion detection techniques:
+A survey, Expert Systems with Applications”, V olume 167, 2021, 114170,
+ISSN 0957-4174.
+[17] P. Jayalaxmi; R. Saha; Gulshan Kumar; M. Conti; Tai-Hoon Kim; “Ma-
+chine and Deep Learning Solutions for Intrusion Detection and Prevention
+in IoTs: A Survey,” IEEE ACCESS, 2022.
+[18] Zehong Wang; Jianhua Liu; Leyao Sun; “EFS-DNN: An Ensemble
+Feature Selection-Based Deep Learning Approach to Network Intrusion
+Detection System,” SECURITY AND COMMUNICATION NETWORKS,
+2022.
+[19] B. Altay, T. Dokeroglu, and A. Cosar, “Context-sensitive and keyword
+density-based supervised machine learning techniques for malicious web-
+page detection,” Soft Comput., vol. 23, no. 12, pp. 4177-4191, Jun. 2019.
+[20] G.-G. Geng, X.-D. Lee, andY .-M. Zhang, “Combating phishing attacks
+via brand identity and authorization features,” Secur. Commun. Netw., vol.
+8, no. 6, pp. 888-898, Apr. 2015.
+[21] S. Marchal, K. Saari, N. Singh, and N. Asokan, “Know your phish:
+Novel techniques for detecting phishing sites and their targets,” IEEE 36th
+Int. Conf. Distrib. Comput. Syst. (ICDCS), Jun. 2016, pp. 323-333.
+[22] A. Pandey, V . Sharma, S. Paanchbhai, N. Hedaoo, and S. Zade, “Optical
+character recognition (OCR),” Int. J. Eng. Manage. Res., vol. 7, no. 2, pp.
+159-161, 2017.
+[23] A. Desai, J. Jatakia, R. Naik, and N. Raul, “Malicious Web content
+detection using machine leaning,” in 2nd IEEE Int. Conf. Recent Trends
+Electron., Inf. Commun. Technol. (RTEICT), May 2017, pp. 1432-1436.
+[24] S. Gupta and S. Sachdeva, “Invitation or bait? Detecting malicious URLs
+in Facebook events,” 11th Int. Conf. Contemp. Comput. (IC), Aug. 2018,
+pp. 1-6.
+[25] A. K. Jain and B. B. Gupta, “Towards detection of phishing websites on
+client-side using machine learning based approach,” Telecommun. Syst.,
+vol. 68, no. 4, pp. 687-700, Aug. 2018.
+[26] Alexander Sjosten, Steven Van Acker , Pablo Picazo-Sanchez and
+Andrei Sabelfeld, “LATEX GLOVES: Protecting Browser Extensions
+from Probing and Revelation Attacks,” Network and Distributed Systems
+Security (NDSS) Symposium 2019 24-27, San Diego, CA, USA, https:
+//dx.doi.org/10.14722/ndss.2019.23309.
+[27] S. Asiri, Y . Xiao, S. Alzahrani, S. Li and T. Li, “A Survey of Intelligent
+Detection Designs of HTML URL Phishing Attacks,” in IEEE Access, vol.
+11, pp. 6421-6443, 2023, doi:10.1109/ACCESS.2023.3237798.
+[28] Phishtank Developer, “ Phishtank Dataset”. Available: https://phishtan
+k.org/developerinfo.phpl.
+[29] https://www.unb.ca/cic/datasets/nsl.html
+[30] M. Tavallaee, E. Bagheri, W. Lu and A. A. Ghorbani, “A detailed
+analysis of the KDD CUP 99 data set,” 2009 IEEE Symposium on
+Computational Intelligence for Security and Defense Applications, Ottawa,
+ON, Canada, 2009, pp. 1-6, doi:10.1109/CISDA.2009.5356528.
+[31] https://www.unb.ca/cic/datasets/url-2016.html
+[32] OpenPhish Developer. (2020). OpenPhish Dataset. [Online]. Available:
+https://openphish.com
+[33] https://paperswithcode.com/dataset/uci-machine-learning-repository
+[34] Alexa Developer. (2020). Alexa Dataset. [Online]. Available: https://ww
+w.alexa.com/topsites
+[35] JoeWein Developer. (2020). JoeWein Dataset. [Online]. Available: https:
+//joewein.net/bl-log/bl-log.html
+[36] Common Crawl Developer. (2020). Available: https://commoncrawl.or
+g/2021/10/september-2021-crawlarchive-now-available/
+[37] A. C. Bahnsen, E. C. Bohorquez, S. Villegas, J. Vargas, and F. A.
+Gonzalez, “Classifying phishing URLs using recurrent neural networks,”
+in Proc.APWG Symp. Electron. Crime Res. (eCrime), 2017, pp. 1-8.
+[38] J. Feng, L. Zou, O. Ye, and J. Han, “Web2Vec: Phishing webpage
+detection method based on multidimensional features driven by deep
+learning,” IEEE Access, vol. 8, pp. 221214-221224, 2020.
+[39] W. Yang,W. Zuo, and B. Cui, “Detecting malicious URLs via a keyword-
+based convolutional gated-recurrent-unit neural network,” IEEE Access,
+vol. 7, pp. 29891-29900, 2019.
+[40] F. Tajaddodianfar, J. W. Stokes, and A. Gururajan, “Texception: A
+character/word-level deep learning model for phishing URL detection,”
+in Proc. IEEE Int. Conf. Acoust., Speech Signal Process. (ICASSP), May
+2020, pp. 2857-2861.
+[41] S.-J. Bu and S.-B. Cho, “Deep character-level anomaly detection based
+on a convolutional autoencoder for zero-day phishing URL detection,”
+Electronics, vol. 10, no. 12, p. 1492, Jun. 2021.
+[42] M. Sameen, K. Han, and S. O. Hwang, “PhishHaven—An efficient real-
+time AI phishing URLs detection system,” IEEE Access, vol. 8, pp. 83425-
+83443, 2020.
+[43] H. Le, Q. Pham, D. Sahoo, and S. C. H. Hoi, “URLNet: Learning a URL
+representation with deep learning for malicious URL detection,” 2018, ar
+Xiv:1802.03162.
+[44] Li Deng; Dong Yu, “Deep Learning: Methods and Applications”, 2014.
+[45] A. A. El-Rady, H. Osama, R. Sadik and H. El Badwy, “Network
+Intrusion Detection CNN Model for Realistic Network Attacks Based on
+Network Traffic Classification,” 40th National Radio Science Conference
+(NRSC), Giza, Egypt, 2023, pp. 167-178, doi:10.1109/NRSC58893.2023
+.10152872.
+[46] Kousik Barik, Sanjay Misra, Karabi Konar, Luis Fernandez Sanz &
+Murat Koyuncu (2022) “Cybersecurity Deep: Approaches, Attacks Dataset,
+and Comparative Study, Applied Artificial Intelligence”, 36:1, doi:10.108
+0/08839514.2022.2055399
+[47] S. Hochreiter and J. Schmidhuber, “Long short-term memory,” Neural
+Comput., vol. 9, no. 8, pp. 1735-1780, 1997.
+[48] Mitsa, T. “How Do You Know You Have Enough Training Data?.”
+Available online: https://towardsdatascience.com/how-do-you-know-y
+ou-have-enough-training-data-ad9b1fd679ee (accessed on 23 April 2019).
+[49] Mohammad, R.M.A., McCluskey, L., Thabtah, F., “UCI Machine Learn-
+ing Repository: PhishingWebsites Data Set”. Available online: https:
+//archive.ics.uci.edu/dataset/327/phishing+websites
+[50] Tang, L., Mahmoud, Q.H., “A Survey of Machine Learning-Based Solu-
+tions for Phishing Website Detection,” Machine Learning and Knowledge
+Extraction, 2021, 3, 672-694.
+Authorized licensed use limited to: South Asian University. Downloaded on March 24,2026 at 17:48:25 UTC from IEEE Xplore.  Restrictions apply. 
